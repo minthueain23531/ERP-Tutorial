@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="view_users_form_inherit_warehouses" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.warehouses</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_rights']/group" position="after">
+                <group string="Allowed Warehouses">
+                    <field name="multi_warehouse_id" widget="many2many_tags"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>

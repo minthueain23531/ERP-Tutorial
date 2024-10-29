@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <record id="branch_tree_view" model="ir.ui.view">
+        <field name="name">branch.tree</field>
+        <field name="model">branch</field>
+        <field name="arch" type="xml">
+            <tree string="Branch" >
+                <field name="name"/>
+                <field name="code"/>
+                <field name="analytic_account_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="branch_form_view" model="ir.ui.view">
+        <field name="name">branch.form</field>
+        <field name="model">branch</field>
+        <field name="arch" type="xml">
+            <form string="Branch" >
+                <sheet>
+                    <field name="logo" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. My Branch" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code" required="1"/>
+                            <field name="analytic_account_id"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="email"/>
+                            <field name="favicon" widget="image" class="float-start oe_avatar"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <!-- Add the chatter section -->
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+     <record id="branch_search_view" model="ir.ui.view">
+        <field name="name">branch.search.view</field>
+        <field name="model">branch</field>
+        <field name="arch" type="xml">
+            <search string="Branch">
+                <field name="name"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_branch_form" model="ir.actions.act_window">
+        <field name="name">Branch</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">branch</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+      <menuitem action="action_branch_form" name="Branch" id="menu_action_branch_form" parent="base.menu_users" sequence="10"/>
+  </data>
+</odoo>
